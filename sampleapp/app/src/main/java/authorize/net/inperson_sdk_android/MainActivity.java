@@ -364,9 +364,6 @@ public class MainActivity extends AppCompatActivity {
 
     void processEmvTransactionError(net.authorize.aim.emv.Result result, EMVErrorCode emvError) {
             if (result != null) {
-            if (BuildConfig.DEBUG) {
-                Log.i(TAG, "onEMVTransactionError tId: " + result.getTransId());
-            }
                 ArrayList<MessageType> message1 = null;
                 message1 = result.getMessages();
                 if (message1 != null
@@ -399,9 +396,6 @@ public class MainActivity extends AppCompatActivity {
             });
 
             try {
-                if (BuildConfig.DEBUG) {
-                    Log.i(TAG, "Sign base64: " + result.getSignatureBase64());
-                }
                 byte[] decodedString = Base64.decode(result.getSignatureBase64().getBytes(), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 ImageView img = (ImageView) dialog.findViewById(R.id.image_captured_sign);
